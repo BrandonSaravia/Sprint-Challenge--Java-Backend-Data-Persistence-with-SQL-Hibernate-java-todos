@@ -2,7 +2,7 @@ package com.todo.todolist.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.management.relation.Role;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -30,9 +30,9 @@ public class UserRoles extends Auditable implements Serializable {
         this.role = role;
     }
 
-    public UserRoles(User user, com.todo.todolist.model.Role r1) {
-        super();
-    }
+//    public UserRoles(User user, com.todo.todolist.model.Role r1) {
+//        super();
+//    }
 
     public User getUser() {
         return user;
@@ -59,11 +59,11 @@ public class UserRoles extends Auditable implements Serializable {
             return false;
         }
         UserRoles userRoles = (UserRoles) o;
-        return user.equals(userRoles.user) && role.equals(userRoles.role);
+        return getUser().equals(userRoles.getUser()) && getRole().equals(userRoles.getRole());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, role);
+        return Objects.hash(getUser(), getRole());
     }
 }

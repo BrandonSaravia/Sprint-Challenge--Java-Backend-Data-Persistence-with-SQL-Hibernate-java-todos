@@ -1,5 +1,6 @@
 package com.todo.todolist.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -84,7 +85,7 @@ public class User {
         List<SimpleGrantedAuthority> rtnList = new ArrayList<>();
 
         for (UserRoles r : this.userRoles) {
-            String myRole = "ROLE_" + r.getRole().getRoleName().toUpperCase();
+            String myRole = "ROLE_" + r.getRole().getName().toUpperCase();
             rtnList.add(new SimpleGrantedAuthority(myRole));
         }
         return rtnList;
