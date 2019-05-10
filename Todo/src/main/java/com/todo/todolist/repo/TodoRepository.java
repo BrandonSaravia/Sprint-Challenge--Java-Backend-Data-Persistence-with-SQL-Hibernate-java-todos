@@ -1,4 +1,7 @@
 package com.todo.todolist.repo;
 
-public class TodoRepository {
+import com.todo.todolist.model.Todo;
+import org.springframework.data.repository.CrudRepository;
+
+public interface TodoRepository  extends CrudRepository<Todo, Long> {
 }

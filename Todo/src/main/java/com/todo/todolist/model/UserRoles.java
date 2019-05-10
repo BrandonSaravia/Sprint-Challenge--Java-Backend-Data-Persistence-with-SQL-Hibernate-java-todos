@@ -30,6 +30,10 @@ public class UserRoles extends Auditable implements Serializable {
         this.role = role;
     }
 
+    public UserRoles(User user, com.todo.todolist.model.Role r1) {
+        super();
+    }
+
     public User getUser() {
         return user;
     }
