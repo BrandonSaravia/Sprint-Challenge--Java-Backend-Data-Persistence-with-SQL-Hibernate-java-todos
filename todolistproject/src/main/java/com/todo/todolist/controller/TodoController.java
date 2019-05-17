@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,7 +27,7 @@ public class TodoController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+
     @PostMapping(value = "/users/todo/{userid}", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<?> addNewUserTodoItem(@Valid @RequestBody Todo newTodo, @PathVariable long userid) throws URISyntaxException {
         newTodo = todoService.save(newTodo);
@@ -44,12 +45,11 @@ public class TodoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/users/mine/{userName}", produces = {"application/json"})
-    public ResponseEntity<?> findTodoByUserName(@PathVariable String userName)
-    {
-        List<Todo> theTodos = todoService.findByUserName(userName);
-        return new ResponseEntity<>(theTodos, HttpStatus.OK);
+    @GetMapping(value = "/users/mine", produces = {"application/json"})
+    public ResponseEntity<?> getCurrentUserName(Authentication authentication) {
+            return new ResponseEntity<>(authentication.getPrincipal(), HttpStatus.OK);
     }
-
-
 }
+
+
+

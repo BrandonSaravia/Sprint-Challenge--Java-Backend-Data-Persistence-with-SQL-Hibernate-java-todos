@@ -46,6 +46,7 @@ public class User extends Auditable {
         this.userRoles = userRoles;
     }
 
+
     public long getUserid() {
         return userid;
     }

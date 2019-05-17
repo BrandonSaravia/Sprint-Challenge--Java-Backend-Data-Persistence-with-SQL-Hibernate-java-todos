@@ -35,14 +35,7 @@ public class SeedData implements CommandLineRunner
         Role r2 = new Role("user");
 
         ArrayList<UserRoles> admins = new ArrayList<>();
-        admins.add(new UserRoles(new User(), r1));
-        admins.add(new UserRoles(new User(), r2));
-
         ArrayList<UserRoles> users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r2));
-
-        rolerepos.save(r1);
-        rolerepos.save(r2);
 
         User u1 = new User("barnbarn", "ILuvM4th!", users);
         User u2 = new User("admin", "password", admins);
@@ -61,5 +54,17 @@ public class SeedData implements CommandLineRunner
         userrepos.save(u2);
         userrepos.save(u3);
         userrepos.save(u4);
+
+
+        admins.add(new UserRoles(u2, r1));
+        admins.add(new UserRoles(u1, r2));
+
+
+        users.add(new UserRoles(u3, r2));
+        users.add(new UserRoles(u4, r2));
+
+        rolerepos.save(r1);
+        rolerepos.save(r2);
+
     }
 }
